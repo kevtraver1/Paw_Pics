@@ -1,8 +1,8 @@
 {
   "service": {
-    "service": "paw-pics-serverless-api",
+    "service": "serverless-flask",
     "serviceObject": {
-      "name": "paw-pics-serverless-api"
+      "name": "serverless-flask"
     },
     "provider": {
       "stage": "dev",
@@ -22,7 +22,7 @@
           "AppLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/paw-pics-serverless-api-dev-app"
+              "LogGroupName": "/aws/lambda/serverless-flask-dev-app"
             }
           },
           "IamRoleLambdaExecution": {
@@ -51,7 +51,7 @@
                       "-",
                       [
                         "dev",
-                        "paw-pics-serverless-api",
+                        "serverless-flask",
                         "lambda"
                       ]
                     ]
@@ -66,7 +66,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/paw-pics-serverless-api-dev-app:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-flask-dev-app:*"
                           }
                         ]
                       },
@@ -77,7 +77,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/paw-pics-serverless-api-dev-app:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/serverless-flask-dev-app:*:*"
                           }
                         ]
                       }
@@ -90,7 +90,7 @@
                 "Fn::Join": [
                   "-",
                   [
-                    "paw-pics-serverless-api",
+                    "serverless-flask",
                     "dev",
                     "us-east-1",
                     "lambdaRole"
@@ -106,9 +106,9 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/paw-pics-serverless-api/dev/1545853036370-2018-12-26T19:37:16.370Z/paw-pics-serverless-api.zip"
+                "S3Key": "serverless/serverless-flask/dev/1545859636412-2018-12-26T21:27:16.412Z/serverless-flask.zip"
               },
-              "FunctionName": "paw-pics-serverless-api-dev-app",
+              "FunctionName": "serverless-flask-dev-app",
               "Handler": "wsgi.handler",
               "MemorySize": 1024,
               "Role": {
@@ -125,20 +125,20 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AppLambdaVersionsKIzB2zESu7VbBOAEPuCEoJupef4B1bJpUBai5Ctkl8": {
+          "AppLambdaVersion9scKV2DhXhufuPetU45NHGioXCvbvm6eK9NZzGWm4Ac": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "qjt24pBF30wIaIVWXrPPQy/6C5cdeSVQ5e3VFyo+WM8="
+              "CodeSha256": "bJj58XtFYmrlrh4joLRSszeOzAoV25xRodON5Ux4JwU="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
-              "Name": "dev-paw-pics-serverless-api",
+              "Name": "dev-serverless-flask",
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -250,7 +250,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1545853036526": {
+          "ApiGatewayDeployment1545859636576": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -320,7 +320,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionsKIzB2zESu7VbBOAEPuCEoJupef4B1bJpUBai5Ctkl8"
+              "Ref": "AppLambdaVersion9scKV2DhXhufuPetU45NHGioXCvbvm6eK9NZzGWm4Ac"
             }
           },
           "ServiceEndpoint": {
@@ -368,10 +368,13 @@
         "packRequirements": false
       },
       "pythonRequirements": {
-        "dockerizePip": "non-linux"
+        "dockerizePip": true
       }
     },
-    "plugins": "serverless-python-requirements serverless-wsgi",
+    "plugins": [
+      "serverless-python-requirements",
+      "serverless-wsgi"
+    ],
     "pluginsData": {},
     "functions": {
       "app": {
@@ -384,7 +387,7 @@
             "http": "ANY {proxy+}"
           }
         ],
-        "name": "paw-pics-serverless-api-dev-app",
+        "name": "serverless-flask-dev-app",
         "package": {},
         "memory": 1024,
         "timeout": 6,
@@ -393,10 +396,10 @@
       }
     },
     "layers": {},
-    "artifact": "/Users/ktravers/Documents/AWS_Paw_Pics/Paw_Pics/paw-pics-app-backend/.serverless/paw-pics-serverless-api.zip"
+    "artifact": "/Users/ktravers/Documents/AWS_Paw_Pics/Paw_Pics/paw-pics-app-backend/.serverless/serverless-flask.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/paw-pics-serverless-api/dev/1545853036370-2018-12-26T19:37:16.370Z",
-    "artifact": "paw-pics-serverless-api.zip"
+    "artifactDirectoryName": "serverless/serverless-flask/dev/1545859636412-2018-12-26T21:27:16.412Z",
+    "artifact": "serverless-flask.zip"
   }
 }
